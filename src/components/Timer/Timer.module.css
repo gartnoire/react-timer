@@ -1,0 +1,44 @@
+.btn {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--blue-hvr);
+}
+
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: 162px;
+}
+
+.timer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.count {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.text {
+  margin-top: 18px;
+  font-size: 15px;
+  color: #977e1c;
+}

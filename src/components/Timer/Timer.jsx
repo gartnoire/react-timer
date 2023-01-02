@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
+import TimerCSS from './Timer.module.css';
 
 function Timer() {
   const [count, setCount] = useState(setDefaultValue());
@@ -6,7 +7,7 @@ function Timer() {
   const timerIdRef = useRef(null);
 
   function setDefaultValue() {
-    const useCount = localStorage.getItem("count");
+    const useCount = localStorage.getItem('count');
 
     return useCount ? +useCount : 0;
   }
@@ -20,7 +21,7 @@ function Timer() {
     setCount(0);
   };
 
-  useEffect(() => localStorage.setItem("count", count), [count]);
+  useEffect(() => localStorage.setItem('count', count), [count]);
 
   useEffect(() => {
     if (isCounting) {
@@ -36,15 +37,24 @@ function Timer() {
   });
 
   return (
-    <section className="Timer">
-      <h1>React - Timer</h1>
-      <h3>{count}</h3>
-      {!isCounting ? (
-        <button onClick={handleStart}>Start</button>
-      ) : (
-        <button onClick={handleStop}>Stop</button>
-      )}
-      <button onClick={handleReset}>Reset</button>
+    <section className={TimerCSS.timer}>
+      <h1 className={TimerCSS.title}>ReactTimer</h1>
+      <h3 className={TimerCSS.count}>{count}</h3>
+      <div className={TimerCSS.btns}>
+        {!isCounting ? (
+          <button className={TimerCSS.btn} onClick={handleStart}>
+            Start
+          </button>
+        ) : (
+          <button className={TimerCSS.btn} onClick={handleStop}>
+            Stop
+          </button>
+        )}
+        <button className={TimerCSS.btn} onClick={handleReset}>
+          Reset
+        </button>
+      </div>
+      <p className={TimerCSS.text}>#StandWithUkraine</p>
     </section>
   );
 }
