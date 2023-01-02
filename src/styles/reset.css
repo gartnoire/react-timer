@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+label {
+  cursor: pointer;
+}
+
+hr {
+  box-sizing: content-box;
+  overflow: visible;
+  height: 0;
+}
+
+details,
+legend {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+button {
+  background-color: transparent;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  box-shadow: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+input {
+  border-radius: 0;
+  outline: none;
+  margin: 0;
+  border: 0;
+}
+
+input,
+textarea {
+  outline: none;
+  resize: none;
+}
+
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+img,
+svg,
+video {
+  display: inline-block;
+  vertical-align: top;
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  margin: 0;
+}
+
+div,
+dl,
+dt,
+dd,
+pre,
+form,
+fieldset,
+blockquote,
+th,
+td,
+p {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
