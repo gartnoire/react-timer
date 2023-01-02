@@ -26,6 +26,22 @@ class Timer extends Component {
     clearInterval(this.counterId);
   };
 
+  componentDidMount() {
+    const useCount = localStorage.getItem("count");
+
+    if (useCount) {
+      this.setState({ count: +useCount });
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("count", this.state.count);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.counterId);
+  }
+
   render() {
     return (
       <section className="Timer">
