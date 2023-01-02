@@ -1,61 +1,52 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-class Timer extends Component {
-  state = {
-    count: 0,
-    setCounting: false,
-  };
+function Timer() {
+  const [count, setCount] = useState(setDefaultValue());
+  const [isCounting, setIsCounting] = useState(false);
+  const timerIdRef = useRef(null);
 
-  handleStart = () => {
-    this.setState({ setCounting: true });
-
-    this.counterId = setInterval(() => {
-      this.setState({ count: this.state.count + 1 });
-    }, 1000);
-  };
-
-  handleStop = () => {
-    this.setState({ setCounting: false });
-
-    clearInterval(this.counterId);
-  };
-
-  handleReset = () => {
-    this.setState({ setCounting: false, count: 0 });
-
-    clearInterval(this.counterId);
-  };
-
-  componentDidMount() {
+  function setDefaultValue() {
     const useCount = localStorage.getItem("count");
 
-    if (useCount) {
-      this.setState({ count: +useCount });
+    return useCount ? +useCount : 0;
+  }
+
+  const handleStart = () => setIsCounting(true);
+
+  const handleStop = () => setIsCounting(false);
+
+  const handleReset = () => {
+    setIsCounting(false);
+    setCount(0);
+  };
+
+  useEffect(() => localStorage.setItem("count", count), [count]);
+
+  useEffect(() => {
+    if (isCounting) {
+      timerIdRef.current = setInterval(() => {
+        setCount((prevCount) => prevCount + 1);
+      }, 1000);
     }
-  }
 
-  componentDidUpdate() {
-    localStorage.setItem("count", this.state.count);
-  }
+    return () => {
+      timerIdRef.current && clearInterval(timerIdRef.current);
+      timerIdRef.current = null;
+    };
+  });
 
-  componentWillUnmount() {
-    clearInterval(this.counterId);
-  }
-
-  render() {
-    return (
-      <section className="Timer">
-        <h1>React - Timer</h1>
-        <h3>{this.state.count}</h3>
-        {!this.state.setCounting ? (
-          <button onClick={this.handleStart}>Start</button>
-        ) : (
-          <button onClick={this.handleStop}>Stop</button>
-        )}
-        <button onClick={this.handleReset}>Reset</button>
-      </section>
-    );
-  }
+  return (
+    <section className="Timer">
+      <h1>React - Timer</h1>
+      <h3>{count}</h3>
+      {!isCounting ? (
+        <button onClick={handleStart}>Start</button>
+      ) : (
+        <button onClick={handleStop}>Stop</button>
+      )}
+      <button onClick={handleReset}>Reset</button>
+    </section>
+  );
 }
 
 export default Timer;
